@@ -11,13 +11,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [], // will hold the results from our ajax call
+      data: {}, // will hold the results from our ajax call
       loading: false, // will be true when ajax request is running
     }
   }
 
 
-  componentDidMount(){
+  componentWillMount(){
 
     this.setState({loading:true});
     Axios.get('http://localhost:8080/api/getwellsinfo')
@@ -32,7 +32,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      {this.state.loading ?  <LoadingSpinner /> : <Oilmap/>}
+      {this.state.loading ?  <LoadingSpinner/> : <Oilmap  welldata = {this.state.data}/>}
 
       </div>
 

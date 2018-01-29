@@ -3,22 +3,49 @@ import {  Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import './leaflet.css';
 class Oilmap extends Component {
-  state = {
-     lat: 51.505,
-     lng: -0.09,
-     zoom: 13,
-   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      lat: 39,
+      lng: -100,
+      zoom: 5,
+
+      loading: false, // will be true when ajax request is running
+      wells:[],
+    }
+  }
+
+  componentDidMount(){
+
+
+    let tempWells = [];
+
+    for(let i =0;i<50 ;i++){
+      const image = new L.Icon({
+        iconUrl: 'marker.png',
+        iconSize:     [40 + (this.props.welldata[i].fake_number/2), 40+ (this.props.welldata[i].fake_number/2)], // size of the icon
+      });
+      tempWells.push(
+
+        <Marker position={[this.props.welldata[i].lat, this.props.welldata[i].long]} icon = {image}>
+          <Popup>
+            <span>
+              {this.props.welldata[i].uwi} <br /> {this.props.welldata[i].operator}
+            </span>
+          </Popup>
+        </Marker>
+      );
+    }
+
+    this.setState({wells : this.state.wells.concat(tempWells)});
+
+  }
 
 
   render() {
     const position = [this.state.lat, this.state.lng];
-    const image = new L.Icon({
-                   iconUrl: 'https://www.circleofash.com/wp-content/uploads/2016/08/square_map_marker_centered.png',
-                   iconSize:     [50, 50], // size of the icon
 
-
-               });
         return (
           <div className="Leaflet">
             <Map center={position} zoom={this.state.zoom}>
@@ -26,21 +53,10 @@ class Oilmap extends Component {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
               />
-              <Marker position={position}>
-                <Popup>
-                  <span>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                  </span>
-                </Popup>
-              </Marker>
-              <Marker position={[41.505,-1.09]} icon={image}>
-                <Popup>
-                  <span>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                  </span>
-                </Popup>
-              </Marker>
+              {this.state.wells}
             </Map>
+
+
           </div>
         );
   }
