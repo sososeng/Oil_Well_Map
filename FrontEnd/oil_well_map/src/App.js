@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import Oilmap from './components/Oilmap';
+import WellsInfo from './components/WellsInfo';
 import Axios from 'axios';
 import LoadingSpinner from './components/loadingSpinner';
 
-
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
 
@@ -31,10 +32,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-      {this.state.loading ?  <LoadingSpinner/> : <Oilmap  welldata = {this.state.data}/>}
+      <MuiThemeProvider>
+        <div className="App">
 
-      </div>
+          {this.state.loading ?  <LoadingSpinner/> : <div><WellsInfo  welldata = {this.state.data}/> <Oilmap  welldata = {this.state.data}/> </div>}
+        </div>
+      </MuiThemeProvider>
 
     );
   }
