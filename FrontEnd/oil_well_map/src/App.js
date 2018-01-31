@@ -35,7 +35,7 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="App">
 
-          {this.state.loading ?  <LoadingSpinner/> : <div><WellsInfo  welldata = {this.state.data}/> <Oilmap  welldata = {this.state.data}/> </div>}
+          {this.state.loading ?  <LoadingSpinner/> : <div className="Inner"> <WellsInfo  welldata = {this.state.data}/> <Oilmap  welldata = {this.state.data}/> </div>}
         </div>
       </MuiThemeProvider>
 

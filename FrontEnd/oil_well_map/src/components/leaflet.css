@@ -1,4 +1,38 @@
 .leaflet-container {
-    height: 800px;
+    height: 100%;
     width: 80%;
+    display: inline-block;
+    float:left;
+}
+
+.mapFilter{
+  width: 18%;
+  display: inline-block;
+  float:right;
+}
+
+.Filter{
+  display: flex;
+}
+
+.Leaflet{
+  height: 92%;
+  width: 100%;
+}
+
+.WellsInfo{
+  height: 8%;
+  width: 100%;
+  background-color: #00BCD4;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.ListView{
+  float: right;
+}
+
+.filterLabel{
+  margin-right: 1em;
 }

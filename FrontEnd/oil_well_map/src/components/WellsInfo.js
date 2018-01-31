@@ -16,6 +16,10 @@ import Toggle from 'material-ui/Toggle';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
+import FontIcon from 'material-ui/FontIcon';
+import ActionViewList from 'material-ui/svg-icons/action/view-list';
+import {fullWhite} from 'material-ui/styles/colors';
+
 class WellsInfo extends Component {
 
   constructor(props) {
@@ -128,6 +132,12 @@ class WellsInfo extends Component {
       width: '75%',
       maxWidth: 'none',
     };
+    const filterStyles = {
+      customWidth: {
+        width: 100,
+      },
+    };
+
     const styles = {
       propContainer: {
         width: 800,
@@ -140,7 +150,10 @@ class WellsInfo extends Component {
     };
     return(
       <div className= "WellsInfo">
-        <RaisedButton label="Oil Wells Info" onClick={this.handleOpen} />
+        <FlatButton className = "ListView"
+
+          hoverColor="#1FB5C9"
+          icon={<ActionViewList color={fullWhite} />} onClick={this.handleOpen} />
         <Dialog
           title="Oil Wells Info"
           actions={actions}
@@ -151,24 +164,26 @@ class WellsInfo extends Component {
           autoScrollBodyContent={true}
         >
 
-        <div className ="Filter">
-
-          <SelectField
-            floatingLabelText="Performance"
-            value={this.state.value}
-            onChange={this.filterChange.bind(this)}
-          >
-            <MenuItem value={"1-10"} primaryText="1-10" />
-            <MenuItem value={"11-20"} primaryText="11-20" />
-            <MenuItem value={"21-30"} primaryText="21-30" />
-            <MenuItem value={"31-40"} primaryText="31-40" />
-            <MenuItem value={"41-50"} primaryText="41-50" />
-            <MenuItem value={"51-60"} primaryText="51-60" />
-            <MenuItem value={"61-70"} primaryText="61-70" />
-            <MenuItem value={"71-80"} primaryText="71-80" />
-            <MenuItem value={"81-90"} primaryText="81-90" />
-            <MenuItem value={"91-100"} primaryText="91-100" />
-          </SelectField>
+        <div className ="infoFilter">
+          <div className = "Filter">
+            <p className ="filterLabel">Filter By Performance:  </p>
+            <SelectField
+              style={filterStyles.customWidth}
+              value={this.state.value}
+              onChange={this.filterChange.bind(this)}
+            >
+              <MenuItem value={"1-10"} primaryText="1-10" />
+              <MenuItem value={"11-20"} primaryText="11-20" />
+              <MenuItem value={"21-30"} primaryText="21-30" />
+              <MenuItem value={"31-40"} primaryText="31-40" />
+              <MenuItem value={"41-50"} primaryText="41-50" />
+              <MenuItem value={"51-60"} primaryText="51-60" />
+              <MenuItem value={"61-70"} primaryText="61-70" />
+              <MenuItem value={"71-80"} primaryText="71-80" />
+              <MenuItem value={"81-90"} primaryText="81-90" />
+              <MenuItem value={"91-100"} primaryText="91-100" />
+            </SelectField>
+            </div>
         </div>
         <Table
           height={this.state.height}

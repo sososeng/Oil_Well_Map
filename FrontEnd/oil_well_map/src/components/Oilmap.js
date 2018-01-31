@@ -95,12 +95,12 @@ class Oilmap extends Component {
   render() {
     const position = [this.state.lat, this.state.lng];
 
-
     const styles = {
       customWidth: {
-        width: 150,
+        width: 100,
       },
     };
+
 
 
         return (
@@ -113,27 +113,28 @@ class Oilmap extends Component {
               {this.state.wells}
             </Map>
 
-            <div className ="Filter">
+            <div className ="mapFilter">
+              <div className = "Filter">
+                <p className ="filterLabel">Filter By Performance:  </p>
+                <SelectField
+                  value={this.state.value}
+                  style={styles.customWidth}
+                  onChange={this.filterChange.bind(this)}
+                >
+                  <MenuItem value={"1-10"} primaryText="1-10" />
+                  <MenuItem value={"11-20"} primaryText="11-20" />
+                  <MenuItem value={"21-30"} primaryText="21-30" />
+                  <MenuItem value={"31-40"} primaryText="31-40" />
+                  <MenuItem value={"41-50"} primaryText="41-50" />
+                  <MenuItem value={"51-60"} primaryText="51-60" />
+                  <MenuItem value={"61-70"} primaryText="61-70" />
+                  <MenuItem value={"71-80"} primaryText="71-80" />
+                  <MenuItem value={"81-90"} primaryText="81-90" />
+                  <MenuItem value={"91-100"} primaryText="91-100" />
+                </SelectField>
 
-              <SelectField
-                floatingLabelText="Performance"
-                value={this.state.value}
-                onChange={this.filterChange.bind(this)}
-              >
-                <MenuItem value={"1-10"} primaryText="1-10" />
-                <MenuItem value={"11-20"} primaryText="11-20" />
-                <MenuItem value={"21-30"} primaryText="21-30" />
-                <MenuItem value={"31-40"} primaryText="31-40" />
-                <MenuItem value={"41-50"} primaryText="41-50" />
-                <MenuItem value={"51-60"} primaryText="51-60" />
-                <MenuItem value={"61-70"} primaryText="61-70" />
-                <MenuItem value={"71-80"} primaryText="71-80" />
-                <MenuItem value={"81-90"} primaryText="81-90" />
-                <MenuItem value={"91-100"} primaryText="91-100" />
-              </SelectField>
-
+              </div>
             </div>
-
 
           </div>
         );
