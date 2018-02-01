@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import {
   Table,
   TableBody,
-  TableFooter,
   TableHeader,
   TableHeaderColumn,
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import TextField from 'material-ui/TextField';
-import Toggle from 'material-ui/Toggle';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-
-import FontIcon from 'material-ui/FontIcon';
 import ActionViewList from 'material-ui/svg-icons/action/view-list';
 import {fullWhite} from 'material-ui/styles/colors';
 
@@ -59,6 +53,7 @@ class WellsInfo extends Component {
     this.setState({height: event.target.value});
   };
 
+  // method for building the table with the data.
   buildWellInfo(index){
     let tempwell= [];
     for(let i=0;i<this.props.welldata[index].length;i++){
@@ -72,12 +67,12 @@ class WellsInfo extends Component {
           </TableRow>
 
         );
-      
+
     }
 
     return tempwell;
   }
-
+  //when the user change the filter, we will rebuild the table with new data
   filterChange(event, index, value){
     if(value === "1-5"){
       this.setState({value:"1-5", wells : this.buildWellInfo(0)});
@@ -167,16 +162,7 @@ class WellsInfo extends Component {
       },
     };
 
-    const styles = {
-      propContainer: {
-        width: 800,
-        overflow: 'hidden',
-        margin: '20px auto 0',
-      },
-      propToggleHeader: {
-        margin: '20px auto 10px',
-      },
-    };
+
     return(
       <div className= "WellsInfo">
         <FlatButton className = "ListView"

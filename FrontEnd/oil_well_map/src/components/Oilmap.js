@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import {  Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import './leaflet.css';
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
-import ActionFavorite from 'material-ui/svg-icons/action/favorite';
-import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -24,7 +21,7 @@ class Oilmap extends Component {
 
     }
   }
-
+  // the method for building map and the wells' markers
   buildMap(index){
     let tempWells = [];
     for(let i =0;i<this.props.welldata[index].length ;i++){
@@ -47,7 +44,7 @@ class Oilmap extends Component {
     }
     return tempWells;
   }
-
+  //when the user change the filter, we will rebuild the map and the markers
   filterChange(event, index, value){
     if(value === "1-5"){
       this.setState({value:"1-5", wells : this.buildMap(0)});

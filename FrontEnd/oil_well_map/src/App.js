@@ -19,12 +19,12 @@ class App extends Component {
 
 
   componentWillMount(){
-
+    //when the page load, we will get the wells info from the backend.
     this.setState({loading:true});
     Axios.get('http://localhost:8080/api/getwellsinfo')
     .then(result => {
-
-      let tempdata = [20];
+      // after we got the data from the backend, we will sort the data into 20 seperate lists base on the well's Performance(the fake number). This way we would not have to iterate the whole list again and again.
+      let tempdata = [];
       for(let x = 0;x<20;x++){
         tempdata[x] = new Array();
       }
@@ -103,7 +103,7 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div className="App">
-
+          {/*after the we got the data and sorted, we will render the children components with the data as props.*/}
           {this.state.loading ?  <LoadingSpinner/> : <div className="Inner"> <WellsInfo  welldata = {this.state.data}/> <Oilmap  welldata = {this.state.data}/> </div>}
         </div>
       </MuiThemeProvider>
